@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm, type Resolver } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
 
 import "./SerieForm.css"
