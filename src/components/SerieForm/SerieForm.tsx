@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useForm, type Resolver } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
 
+import "./SerieForm.css"
 
 export interface CamposSerie {
   nome: string
@@ -35,6 +36,8 @@ export function SerieForm() {
   const params = useParams()
   const navigate = useNavigate()
   const {register, handleSubmit, formState: {errors}, setValue } = useForm<CamposSerie>({resolver})
+
+  const editando = !!params["id"]
 
   const onSubmit = handleSubmit(data => {
     console.log("dados do form", data)
@@ -70,7 +73,7 @@ export function SerieForm() {
     }
   }, [params])
 
-  return <form style={{display: "flex", flexDirection: "column"}} onSubmit={onSubmit}>
+  return <form onSubmit={onSubmit} className="serieform">
     <input {...register("nome")} placeholder="Nome da série" />
     <input {...register("numTemporadas")} type="number" placeholder="Número de temporadas" />
     <input {...register("dataLancamentoTemporada")} type="date" placeholder="Data de Lançamento da Temporada" />
@@ -79,6 +82,6 @@ export function SerieForm() {
     <input {...register("categoria")} placeholder="Categoria" />
     <input {...register("dataAssistiu")} type="date" placeholder="Data em que assistiu" />
 
-    <button type="submit">Cadastrar Série</button>
+    <button type="submit">{editando ? "Atualizar" : "Cadastrar"} Série</button>
   </form>
 }

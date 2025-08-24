@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+## Nome: `Giovanna Barbosa Marinho`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para executar este projeto:
 
-Currently, two official plugins are available:
+1. Rode npm install para instalar as dependências do projeto:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. E em seguida, npm start, para iniciar a execução do projeto.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm run dev
+```
+4. Acesse a url disponibilizada pelo vite em seu navegador
+
+```
+http://localhost:5173
+```
+
+Após execução do projeto, este é o resultado esperado no navegador:
+![Imagem mostrando o resultado esperado ao rodar este projeto](./docs/home.png)
+
+## Introdução
+
+Este projeto contém uma estrutura básica a partir do template Vite, sem muitas alterações, com o objetivo de demostrar como compartilhar o estado de uma aplicação utilizando Vite, React, React Router e React Hook Form.
+
+## Componentes
+
+Os componentes estão no diretório `./src/components`:
+- Home:
+  - Descrição: este componente contém apenas alguns textos para recepcionar o usuário ao projeto.
+
+- Navbar:
+  - Descrição: este componente utiliza NavLink do React Router para mostrar apresentar uma barra de navegação para as páginas do projeto.
+
+- SerieForm:
+  - Descrição: este componente renderiza um formulário para cadastro ou edição de séries. Os dados s"ao obtidos e salvos no localStorage do navegador. É verificado se um param id existe na url para considerar se é uma edição de uma série já existente ou se é uma adição de uma nova série. Aqui é utilizado React Hook Form para auxiliar no lógica e validação do formulário. Após salvar o formulário, o usuário é redirecionadao para a SerieList.
+
+- SerieList:
+  - Descrição: Este componente oobtém as séries salvas no localStorage para exibí-las em uma lista, com a opção de navegar para a edição da série, ou deletar a série.
+
+- Sobre:
+  - Descrição: este componente apenas contém alguns textos informativos sobre o projeto.
+
+## Conclusão
+
+Este projeto é apenas para fins demonstrativos e não contém mais alterações do que as necessárias para demostrar algumas funcionalidades úteis para o desenvolvimento de projetos em ReactJS. O visual do projeto se deve ao css já existente no template criado pelo Vite, o qual foi apenas minimamente ajustado e adicionado algumas classes para os componentes criados.
