@@ -21,7 +21,10 @@ http://localhost:5173
 ```
 
 Após execução do projeto, este é o resultado esperado no navegador:
-![Imagem mostrando o resultado esperado ao rodar este projeto](./docs/home.png)
+![Imagem mostrando a tela inicial ao rodar este projeto](./docs/home.png)
+![Imagem mostrando a tela de cadastro de séries](./docs/cadastro.png)
+![Imagem mostrando a tela de lista de séries](./docs/lista.png)
+![Imagem mostrando a tela de sobre](./docs/sobre.png)
 
 ## Introdução
 
@@ -37,7 +40,7 @@ Os componentes estão no diretório `./src/components`:
   - Descrição: este componente utiliza NavLink do React Router para mostrar apresentar uma barra de navegação para as páginas do projeto.
 
 - SerieForm:
-  - Descrição: este componente renderiza um formulário para cadastro ou edição de séries. Os dados s"ao obtidos e salvos no localStorage do navegador. É verificado se um param id existe na url para considerar se é uma edição de uma série já existente ou se é uma adição de uma nova série. Aqui é utilizado React Hook Form para auxiliar no lógica e validação do formulário. Após salvar o formulário, o usuário é redirecionadao para a SerieList.
+  - Descrição: este componente renderiza um formulário para cadastro ou edição de séries. Os dados s"ao obtidos e salvos no localStorage do navegador. É verificado se um param id existe na url para considerar se é uma edição de uma série já existente ou se é uma adição de uma nova série. Aqui é utilizado React Hook Form para auxiliar no lógica do formulário. Caso o usuário não saiba todas as informações no momento, a validação do form obriga apenas que os campos de nome da série e data em que assistiu sejam obrigatórios (o usuário pode editar estes dados posteriormente). Após salvar o formulário, o usuário é redirecionadao para a SerieList.
 
 - SerieList:
   - Descrição: Este componente oobtém as séries salvas no localStorage para exibí-las em uma lista, com a opção de navegar para a edição da série, ou deletar a série.
