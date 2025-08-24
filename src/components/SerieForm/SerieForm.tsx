@@ -6,42 +6,22 @@ import "./SerieForm.css"
 
 export interface CamposSerie {
   nome: string
-  numTemporadas: number;
-  dataLancamentoTemporada: string
-  diretor: string
-  produtora: string
-  categoria: string
+  numTemporadas?: number;
+  dataLancamentoTemporada?: string
+  diretor?: string
+  produtora?: string
+  categoria?: string
   dataAssistiu: string
 }
-
-const resolver: Resolver<CamposSerie> = async (values) => {
-
-  const errors: {[key in keyof CamposSerie]?: any} = {}
-
-  if (!values.nome) {
-    errors["nome"] = {
-      type: "required",
-      message: "This is required.",
-    }
-  }
-
-  return {
-    values,
-    errors
-  }
-}
-
 
 export function SerieForm() {
   const params = useParams()
   const navigate = useNavigate()
-  const {register, handleSubmit, formState: {errors}, setValue } = useForm<CamposSerie>({resolver})
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<CamposSerie>()
 
   const editando = !!params["id"]
 
   const onSubmit = handleSubmit(data => {
-    console.log("dados do form", data)
-
     const seriesCadastradas = JSON.parse(window.localStorage.getItem("series") ?? "[]") as CamposSerie[]
     const id = params["id"]
     if (id) {
@@ -49,12 +29,12 @@ export function SerieForm() {
     } else {
       seriesCadastradas.push(data)
     }
-    
+
     window.localStorage.setItem("series", JSON.stringify(seriesCadastradas))
 
     navigate("/lista")
   })
-
+  console.log(errors)
   useEffect(() => {
     const id = params["id"]
     if (id) {
@@ -74,13 +54,29 @@ export function SerieForm() {
   }, [params])
 
   return <form onSubmit={onSubmit} className="serieform">
-    <input {...register("nome")} placeholder="Nome da série" />
-    <input {...register("numTemporadas")} type="number" placeholder="Número de temporadas" />
-    <input {...register("dataLancamentoTemporada")} type="date" placeholder="Data de Lançamento da Temporada" />
-    <input {...register("diretor")} placeholder="Diretor" />
-    <input {...register("produtora")} placeholder="Produtora" />
-    <input {...register("categoria")} placeholder="Categoria" />
-    <input {...register("dataAssistiu")} type="date" placeholder="Data em que assistiu" />
+    <div>
+      <input {...register("nome")} placeholder="Nome da série" required />
+    </div>
+    <div>
+      <input {...register("numTemporadas")} type="number" placeholder="Número de temporadas" />
+    </div>
+    <div>
+      <label>Data de lançamento da temporada</label>
+      <input {...register("dataLancamentoTemporada")} type="date" placeholder="Data de Lançamento da Temporada" />
+    </div>
+    <div>
+      <input {...register("diretor")} placeholder="Diretor" />
+    </div>
+    <div>
+      <input {...register("produtora")} placeholder="Produtora" />
+    </div>
+    <div>
+      <input {...register("categoria")} placeholder="Categoria" />
+    </div>
+    <div>
+      <label>Data em que assistiu a série</label>
+      <input {...register("dataAssistiu")} type="date" required placeholder="Data em que assistiu" />
+    </div>
 
     <button type="submit">{editando ? "Atualizar" : "Cadastrar"} Série</button>
   </form>

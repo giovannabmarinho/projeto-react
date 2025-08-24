@@ -27,11 +27,11 @@ export function SerieList () {
         {series.map((serie, index) => {
             return <div key={index} className="item">
                 <p>{serie.nome}</p>
-                <p>{serie.numTemporadas} temporadas</p>
-                <p>{new Date(serie.dataLancamentoTemporada).toLocaleDateString()}</p>
-                <p>{serie.diretor}</p>
-                <p>{serie.produtora}</p>
-                <p>{serie.categoria}</p>
+                <p>{serie.numTemporadas || "??"} temporadas</p>
+                <p>{serie.dataLancamentoTemporada ? new Date(serie.dataLancamentoTemporada).toLocaleDateString() : "---"}</p>
+                <p>{serie.diretor || "---"}</p>
+                <p>{serie.produtora || "---"}</p>
+                <p>{serie.categoria || "---"}</p>
                 <p>{new Date(serie.dataAssistiu).toLocaleDateString()}</p>
                 <button type="button" onClick={() => handleEditarSerie(index)}>Editar</button>
                 <button type="button" onClick={() => handleDeletarSerie(index)}>Excluir</button>

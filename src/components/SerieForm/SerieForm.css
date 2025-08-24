@@ -3,3 +3,14 @@
     flex-direction: column;
     gap: 16px;
 }
+
+.serieform div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.serieform label {
+    text-align: left;
+    font-size: 12px;
+}
