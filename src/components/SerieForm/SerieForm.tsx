@@ -3,15 +3,17 @@ import { useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
 
 import "./SerieForm.css"
+import { api, type SerieResponse } from "../../api";
 
 export interface CamposSerie {
-  nome: string
-  numTemporadas?: number;
-  dataLancamentoTemporada?: string
-  diretor?: string
-  produtora?: string
-  categoria?: string
-  dataAssistiu: string
+  id?: number;
+  title: string
+  seasons?: number;
+  releaseDate?: string
+  director?: string
+  production?: string
+  category?: string
+  watchedAt: string
 }
 
 export function SerieForm() {
@@ -20,62 +22,60 @@ export function SerieForm() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<CamposSerie>()
 
   const editando = !!params["id"]
-
-  const onSubmit = handleSubmit(data => {
-    const seriesCadastradas = JSON.parse(window.localStorage.getItem("series") ?? "[]") as CamposSerie[]
+console.log(errors)
+  const onSubmit = handleSubmit(async data => {
     const id = params["id"]
+    console.log(id)
     if (id) {
-      seriesCadastradas[Number(id)] = data
+      await api.put("series", {...data, id: Number(id)})
     } else {
-      seriesCadastradas.push(data)
+      await api.post("series", data)
     }
-
-    window.localStorage.setItem("series", JSON.stringify(seriesCadastradas))
 
     navigate("/lista")
   })
-  console.log(errors)
+
   useEffect(() => {
     const id = params["id"]
     if (id) {
-      const seriesCadastradas = JSON.parse(window.localStorage.getItem("series") ?? "[]") as CamposSerie[]
-      const serie = seriesCadastradas[Number(id)]
-
-      if (serie) {
-        setValue("nome", serie.nome)
-        setValue("categoria", serie.categoria)
-        setValue("dataAssistiu", serie.dataAssistiu)
-        setValue("dataLancamentoTemporada", serie.dataLancamentoTemporada)
-        setValue("diretor", serie.diretor)
-        setValue("numTemporadas", serie.numTemporadas)
-        setValue("produtora", serie.produtora)
-      }
+      api.get<SerieResponse>("series/" + id).then(response => {
+        const serie = response.data
+        if (serie) {
+          setValue("title", serie.title)
+          setValue("category", serie.category)
+          setValue("watchedAt", serie.watchedAt)
+          setValue("releaseDate", serie.releaseDate)
+          setValue("director", serie.director)
+          setValue("seasons", serie.seasons)
+          setValue("production", serie.production)
+        }
+      })
     }
   }, [params])
 
   return <form onSubmit={onSubmit} className="serieform">
     <div>
-      <input {...register("nome")} placeholder="Nome da série" required />
+      <input {...register("title")} placeholder="Nome da série" required />
     </div>
     <div>
-      <input {...register("numTemporadas")} type="number" placeholder="Número de temporadas" />
+      <input {...register("seasons")} type="number" placeholder="Número de temporadas" />
     </div>
     <div>
       <label>Data de lançamento da temporada</label>
-      <input {...register("dataLancamentoTemporada")} type="date" placeholder="Data de Lançamento da Temporada" />
+      <input {...register("releaseDate")} type="date" placeholder="Data de Lançamento da Temporada" />
     </div>
     <div>
-      <input {...register("diretor")} placeholder="Diretor" />
+      <input {...register("director")} placeholder="Diretor" />
     </div>
     <div>
-      <input {...register("produtora")} placeholder="Produtora" />
+      <input {...register("production")} placeholder="Produtora" />
     </div>
     <div>
-      <input {...register("categoria")} placeholder="Categoria" />
+      <input {...register("category")} placeholder="Categoria" />
     </div>
     <div>
       <label>Data em que assistiu a série</label>
-      <input {...register("dataAssistiu")} type="date" required placeholder="Data em que assistiu" />
+      <input {...register("watchedAt")} type="date" required placeholder="Data em que assistiu" />
     </div>
 
     <button type="submit">{editando ? "Atualizar" : "Cadastrar"} Série</button>
