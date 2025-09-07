@@ -20,6 +20,11 @@ npm run dev
 http://localhost:5173
 ```
 
+5. Executar testes:
+```
+npm run test
+```
+
 Após execução do projeto, este é o resultado esperado no navegador:
 ![Imagem mostrando a tela inicial ao rodar este projeto](./docs/home.png)
 ![Imagem mostrando a tela de cadastro de séries](./docs/cadastro.png)

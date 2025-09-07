@@ -9,10 +9,9 @@ export function SerieList() {
     const navigate = useNavigate()
     const [series, setSeries] = useState<CamposSerie[]>([])
 
-    const fetchSeries = useCallback(() => {
-        api.get<SerieResponse[]>("series").then(response => {
-            setSeries(response.data)
-        })
+    const fetchSeries = useCallback(async () => {
+        const series = await api.get<SerieResponse[]>("series")
+        setSeries(series.data)
     }, [])
 
     useEffect(() => {
