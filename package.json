@@ -12,8 +12,10 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@testing-library/react": "^16.3.0",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.8",
+    "jsdom": "^26.1.0",
     "react": "^19.1.1",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.1",
