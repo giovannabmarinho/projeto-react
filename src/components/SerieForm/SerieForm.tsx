@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
-
-import "./SerieForm.css"
 import { api, type SerieResponse } from "../../api";
+import { Button, Form } from "react-bootstrap";
+import "./SerieForm.css"
 
 export interface CamposSerie {
   id?: number;
@@ -53,31 +53,31 @@ console.log(errors)
     }
   }, [params])
 
-  return <form onSubmit={onSubmit} className="serieform">
-    <div>
-      <input {...register("title")} placeholder="Nome da série" required />
-    </div>
-    <div>
-      <input {...register("seasons")} type="number" placeholder="Número de temporadas" />
-    </div>
-    <div>
-      <label>Data de lançamento da temporada</label>
-      <input {...register("releaseDate")} type="date" placeholder="Data de Lançamento da Temporada" />
-    </div>
-    <div>
-      <input {...register("director")} placeholder="Diretor" />
-    </div>
-    <div>
-      <input {...register("production")} placeholder="Produtora" />
-    </div>
-    <div>
-      <input {...register("category")} placeholder="Categoria" />
-    </div>
-    <div>
-      <label>Data em que assistiu a série</label>
-      <input {...register("watchedAt")} type="date" required placeholder="Data em que assistiu" />
-    </div>
+  return <Form onSubmit={onSubmit} className="serieform mt-4 mb-4">
+    <Form.Group>
+      <Form.Control {...register("title")} placeholder="Nome da série" required />
+    </Form.Group>
+    <Form.Group>
+      <Form.Control {...register("seasons")} type="number" placeholder="Número de temporadas" />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Data de lançamento da temporada</Form.Label>
+      <Form.Control {...register("releaseDate")} type="date" placeholder="Data de Lançamento da Temporada" />
+    </Form.Group>
+    <Form.Group>
+      <Form.Control {...register("director")} placeholder="Diretor" />
+    </Form.Group>
+    <Form.Group>
+      <Form.Control {...register("production")} placeholder="Produtora" />
+    </Form.Group>
+    <Form.Group>
+      <Form.Control {...register("category")} placeholder="Categoria" />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Data em que assistiu a série</Form.Label>
+      <Form.Control {...register("watchedAt")} type="date" required placeholder="Data em que assistiu" />
+    </Form.Group>
 
-    <button type="submit">{editando ? "Atualizar" : "Cadastrar"} Série</button>
-  </form>
+    <Button variant="success" type="submit">{editando ? "Atualizar" : "Cadastrar"} Série</Button>
+  </Form>
 }

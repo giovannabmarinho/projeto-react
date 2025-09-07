@@ -1,8 +1,0 @@
-.navbar {
-    width: 100%;
-}
-.navbar ul {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
-}

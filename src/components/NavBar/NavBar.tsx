@@ -1,13 +1,15 @@
-import { NavLink } from "react-router";
 import "./NavBar.css"
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 export function NavBar() {
-    return <nav className="navbar">
-        <ul>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/lista">Lista de séries</NavLink></li>
-            <li><NavLink to="/cadastro">Cadastro de série</NavLink></li>
-            <li><NavLink to="/sobre">Sobre</NavLink></li>
-        </ul>
-    </nav>
+    return <Navbar className="bg-body-tertiary">
+        <Container>
+            <Nav>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/lista">Lista de séries</Nav.Link>
+                <Nav.Link href="/cadastro">Cadastro de série</Nav.Link>
+                <Nav.Link href="/sobre">Sobre</Nav.Link>
+            </Nav>
+        </Container>
+    </Navbar>
 }
