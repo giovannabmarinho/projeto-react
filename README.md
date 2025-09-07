@@ -30,6 +30,13 @@ Após execução do projeto, este é o resultado esperado no navegador:
 
 Este projeto contém uma estrutura básica a partir do template Vite, sem muitas alterações, com o objetivo de demostrar como compartilhar o estado de uma aplicação utilizando Vite, React, React Router e React Hook Form.
 
+### Atualização:
+
+Para a segunda parte deste projeto, foram feitas as seguintes adições:
+- Bootstrap utilizando a biblioteca [react-bootstrap](https://react-bootstrap.netlify.app/)
+- Integração com uma [api](https://github.com/adsPucrsOnline/DesenvolvimentoFrontend/tree/main/serieJournal-api) rodando localmente para realizar as operações CRUD com as séries
+- Testes básicos de componentes utilizando [Vitest](https://vitest.dev/)
+
 ## Componentes
 
 Os componentes estão no diretório `./src/components`:
@@ -50,4 +57,4 @@ Os componentes estão no diretório `./src/components`:
 
 ## Conclusão
 
-Este projeto é apenas para fins demonstrativos e não contém mais alterações do que as necessárias para demostrar algumas funcionalidades úteis para o desenvolvimento de projetos em ReactJS. O visual do projeto se deve ao css já existente no template criado pelo Vite, o qual foi apenas minimamente ajustado e adicionado algumas classes para os componentes criados.
+Este projeto é apenas para fins demonstrativos e não contém mais alterações do que as necessárias para demostrar algumas funcionalidades úteis para o desenvolvimento de projetos em ReactJS e integraçao com api.
