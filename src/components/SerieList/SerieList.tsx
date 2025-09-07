@@ -29,7 +29,7 @@ export function SerieList() {
         })
     }
 
-    return <Table striped bordered hover>
+    return <Table striped bordered hover className="m-4">
         <thead>
             <tr>
                 <th>Título</th>
